@@ -62,10 +62,18 @@ docker-compose up -d
 ### 6. 测试
 docker ps -a
 
-
-==============================================================================================================
-
-### 7. 监控（注意47.106.143.76要改成你的机器的IP地址）
+### 7. kafka-manager监控（注意47.106.143.76要改成你的机器的IP地址）
 docker pull sheepkiller/kafka-manager
 docker run --name kafka_manager_1 -it --rm -p 9000:9000 -e ZK_HOSTS="47.106.143.76:2181" -e APPLICATION_SECRET=letmein sheepkiller/kafka-manager
 如：docker run --name kafka_manager_1 -it --rm -p 9000:9000 -e ZK_HOSTS="192.168.101.64:2181" -e APPLICATION_SECRET=letmein sheepkiller/kafka-manager
+
+
+### 常见问题
+
+#### 1. Firewalld error with Docker 'No route to host'
+This issue applies to: RHEL/CentOS 7.x and later
+
+firewall-cmd --permanent --direct --add-rule ipv4 filter INPUT 4 -i docker0 -j ACCEPT
+
+firewall-cmd --reload
+systemctl restart docker
