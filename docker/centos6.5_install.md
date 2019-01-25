@@ -1,5 +1,9 @@
 # centos6.5升级内核并安装docker
 
+- centos6.5默认是2.6内核，不能安装docker，需要先升级内核
+
+## 1. 升级内核
+
 ### 查看当前版本
 - uname -r
 - yum -y update nss (更新nss版本，解决curl的https报错问题)
@@ -26,3 +30,9 @@
 - dracut -f /boot/initramfs-4.6.0-1.el6.elrepo.x86_64.img 4.6.0-1.el6.elrepo.x86_64 （注意：这里的文件为你的内核文件）
 - reboot
 - 如有问题继续google
+
+
+## 2. 安装docker
+- yum install epel-release
+- yum install docker-io
+- service docker start
