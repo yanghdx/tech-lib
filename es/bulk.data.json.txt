@@ -1,1 +1,0 @@
-{"index":{"_index":"net_ticket","_type":"doc"}}
